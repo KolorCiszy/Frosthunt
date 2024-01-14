@@ -18,22 +18,31 @@ public:
 	// Sets default values for this actor's properties
 	APickupActorBase();
 
-	// Called every frame
-	virtual void Tick(float DeltaTime) override;
+	UFUNCTION(BlueprintPure, Category="Pickup Actor Base")
+	UStaticMeshComponent* GetMesh() const
+	{
+		return Mesh;
+	}
 
-protected:
-	// Called when the game starts or when spawned
-	virtual void BeginPlay() override;
+	UFUNCTION(BlueprintPure, Category = "Pickup Actor Base")
+	UBoxComponent* GetCollisionBox() const
+	{
+		return CollisionBox;
+	}
+	UFUNCTION(BlueprintPure, Category = "Pickup Actor Base")
+	bool GetDestroyOnPickup() const	
+	{
+		return bDestroyOnPickup;
+	}
+private:
 
-	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite, meta = (AllowPrivateAccess = "true"))
+	UPROPERTY(EditDefaultsOnly, meta = (AllowPrivateAccess = "true"))
 	TObjectPtr<UStaticMeshComponent> Mesh;
 
-	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite, meta = (AllowPrivateAccess = "true"))
+	UPROPERTY(EditDefaultsOnly, meta = (AllowPrivateAccess = "true"))
 	TObjectPtr<UBoxComponent> CollisionBox;
-	
-	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+
+	UPROPERTY(EditAnywhere)
 	bool bDestroyOnPickup;
 
-
-	
 };

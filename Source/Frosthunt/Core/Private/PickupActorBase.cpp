@@ -16,16 +16,4 @@ APickupActorBase::APickupActorBase()
 	CollisionBox->AttachToComponent(RootComponent, FAttachmentTransformRules::KeepRelativeTransform);
 }
 
-// Called when the game starts or when spawned
-void APickupActorBase::BeginPlay()
-{
-	Super::BeginPlay();
-	
-}
 
-// Called every frame
-void APickupActorBase::Tick(float DeltaTime)
-{
-	Super::Tick(DeltaTime);
-
-}

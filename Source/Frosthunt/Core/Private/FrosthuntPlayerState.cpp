@@ -28,15 +28,15 @@ FTimespan AFrosthuntPlayerState::GetElapsedTime() const
 {
 	if (!bTimerPaused && !bTimerStopped)
 	{
-		return FDateTime::Now() - GameStartTime - GamePauseDuration;
+		return FDateTime::Now() - GameStartTime - GamePauseDuration + PenaltyDuration;
 	}
 	else if (bTimerPaused)
 	{
-		return GamePauseTime - GameStartTime - GamePauseDuration;
+		return GamePauseTime - GameStartTime - GamePauseDuration + PenaltyDuration;
 	}
 	else // Timer stopped
 	{
-		return GameEndTime - GameStartTime - GamePauseDuration;
+		return GameEndTime - GameStartTime - GamePauseDuration + PenaltyDuration;
 	}
 	
 }
@@ -65,5 +65,12 @@ void AFrosthuntPlayerState::ResumeGameTimer()
 	{
 		GamePauseDuration += FDateTime::Now() - GamePauseTime;
 		bTimerPaused = false;
+	}
+}
+void AFrosthuntPlayerState::AddPenaltyDuration(FTimespan ToAdd)
+{
+	if (!bTimerStopped)
+	{
+		PenaltyDuration += ToAdd;
 	}
 }

@@ -34,7 +34,7 @@ public:
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
 
 
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "GameplayTags")
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Gameplay Tags")
 	FGameplayTagContainer GameplayTags;
 
 	virtual void GetOwnedGameplayTags(FGameplayTagContainer& TagContainer) const override 
@@ -73,6 +73,10 @@ protected:
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Movement")
 	float BackwardMovementSpeedMultiplier;
 
+	virtual void PossessedBy(AController* NewController) override;
+
+private:
+
 	void Move(const FInputActionValue& Value);
 
 	void Look(const FInputActionValue& Value);
@@ -84,12 +88,5 @@ protected:
 	void StopRunning();
 
 	void StartSprinting();
-
-	void Crouch();
-
-	void UnCrouch();
-	
-	virtual void PossessedBy(AController* NewController) override;
-
 
 };

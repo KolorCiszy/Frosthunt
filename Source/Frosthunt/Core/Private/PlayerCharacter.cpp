@@ -74,8 +74,6 @@ void APlayerCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputCom
 
 		EnhancedInputComponent->BindAction(InputActions->InputLook, ETriggerEvent::Triggered, this, &APlayerCharacter::Look);
 
-		EnhancedInputComponent->BindAction(InputActions->InputCrouch, ETriggerEvent::Started, this, &APlayerCharacter::Crouch);
-		EnhancedInputComponent->BindAction(InputActions->InputCrouch, ETriggerEvent::Completed, this, &APlayerCharacter::UnCrouch);
 	}
 	
 }
@@ -131,15 +129,7 @@ void APlayerCharacter::Jump()
 	Super::Jump();
 }
 
-void APlayerCharacter::Crouch()
-{
-	Super::Crouch();
-}
 
-void APlayerCharacter::UnCrouch()
-{
-	Super::UnCrouch();
-}
 void APlayerCharacter::StartRunning()
 {
 	GetCharacterMovement()->MaxWalkSpeed = RunningSpeed;

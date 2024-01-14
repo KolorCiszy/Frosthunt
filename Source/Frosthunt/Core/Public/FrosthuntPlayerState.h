@@ -23,25 +23,27 @@ public:
 	UFUNCTION(BlueprintCallable, Category = "Player State")
 	void IncrementPickedActors();
 
-	UFUNCTION(BlueprintCallable, Category = "Player State")
+	UFUNCTION(BlueprintCallable, Category = "Player State Timer")
 	void StartGameTimer();
-	UFUNCTION(BlueprintPure, Category = "Player State")
+	UFUNCTION(BlueprintPure, Category = "Player State Timer")
 	FTimespan GetElapsedTime() const;
 
-	UFUNCTION(BlueprintCallable, Category = "Player State")
+	UFUNCTION(BlueprintCallable, Category = "Player State Timer")
 	void StopGameTimer();
 
-	UFUNCTION(BlueprintCallable, Category = "Player State")
+	UFUNCTION(BlueprintCallable, Category = "Player State Timer")
 	void PauseGameTimer();
 
-	UFUNCTION(BlueprintCallable, Category = "Player State")
+	UFUNCTION(BlueprintCallable, Category = "Player State Timer")
 	void ResumeGameTimer();
 
-
+	UFUNCTION(BlueprintCallable, Category = "Player State Timer")
+	void AddPenaltyDuration(FTimespan ToAdd);
 
 protected:
 	UPROPERTY(BlueprintReadWrite)
 	int32 PickedActors;
+
 	UPROPERTY(BlueprintReadOnly)
 	FDateTime GameStartTime;
 	UPROPERTY(BlueprintReadOnly)
@@ -51,6 +53,8 @@ protected:
 	
 	UPROPERTY(BlueprintReadOnly)
 	FTimespan GamePauseDuration;
+	UPROPERTY(BlueprintReadOnly)
+	FTimespan PenaltyDuration;
 
 	UPROPERTY(BlueprintReadOnly)
 	bool bTimerPaused;
